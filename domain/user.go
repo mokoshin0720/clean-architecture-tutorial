@@ -1,3 +1,4 @@
+// Entity（ビジネスルールのためのデータを定義する）
 package domain
 
 type User struct {

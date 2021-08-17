@@ -1,3 +1,4 @@
+// Interface（実際のデータのやり取りを定義する）
 package database
 
 import "clean-architecture-tutorial/domain"
@@ -40,7 +41,7 @@ func (repo *UserRepository) FindById(identifier int) (user domain.User, err erro
 	return
 }
 
-func (repo * UserRepository) FindAll() (users domain.Users, err error) {
+func (repo *UserRepository) FindAll() (users domain.Users, err error) {
 	rows, err := repo.Query("SELECT id, first_name, last_name FROM users")
 	defer rows.Close()
 	if err != nil {
@@ -54,9 +55,9 @@ func (repo * UserRepository) FindAll() (users domain.Users, err error) {
 			continue
 		}
 		user := domain.User{
-			ID: id,
+			ID:        id,
 			FirstName: firstName,
-			LastName: lastName,
+			LastName:  lastName,
 		}
 		users = append(users, user)
 	}
