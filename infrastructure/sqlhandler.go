@@ -4,6 +4,10 @@ package infrastructure
 import (
 	"clean-architecture-tutorial/interfaces/database"
 	"database/sql"
+	"fmt"
+	"os"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type SqlHandler struct {
@@ -11,7 +15,8 @@ type SqlHandler struct {
 }
 
 func NewSqlHandler() *SqlHandler {
-	conn, err := sql.Open("mysql", "root@tcp(db:3306)/sample")
+	fmt.Println(os.Getenv("DB_ROLE"))
+	conn, err := sql.Open("mysql", "root:@tcp(localhost:3306)/clean")
 	if err != nil {
 		panic(err.Error)
 	}
@@ -30,7 +35,7 @@ func (handler *SqlHandler) Execute(statement string, args ...interface{}) (datab
 	return res, nil
 }
 
-func (handler *SqlHandler) Query (statement string, args ...interface{}) (database.Row, error) {
+func (handler *SqlHandler) Query(statement string, args ...interface{}) (database.Row, error) {
 	rows, err := handler.Conn.Query(statement, args...)
 	if err != nil {
 		return new(SqlRow), err

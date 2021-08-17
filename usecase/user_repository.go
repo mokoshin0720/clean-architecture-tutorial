@@ -1,3 +1,4 @@
+// Usecase（interface/databaseへのInput Port）
 package usecase
 
 import "clean-architecture-tutorial/domain"

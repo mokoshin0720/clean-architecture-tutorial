@@ -1,4 +1,4 @@
-// UseCase（interface/databaseへのInput Port, interface/controllersへのGateway）
+// UseCase（interface/controllersへのGateway）
 package usecase
 
 import "clean-architecture-tutorial/domain"
